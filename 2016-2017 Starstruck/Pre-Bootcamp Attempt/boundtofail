@@ -1,0 +1,162 @@
+//Notes:
+//Start the robot with the claw to the right, level with the claw and the ramp
+//port 1 = left wheels
+//port 2 = right wheels
+//port 3 = claw
+//port 4 = claw up and down right
+//port 5 = claw up and down left
+//port 6 = flag (optional)
+
+
+#include "main.h"
+
+
+const int mspr = ???;
+const int circumference= ???;
+const int dfromstarttoturn= ???;
+const int dbetweenwheels = ???;
+const int dfromturntoboxes = ???;
+const int dfromboxestobaskets = ???;
+const int dfromaxiltoendofclaw = ???;
+const int heightofsecondbox = ???;
+const int heightofball = ???;
+
+
+void main(){
+motorSet(6, 1);
+displacement(dfromstarttoturn);
+turnleft ();
+displacement(dfromturntoboxes);
+turnright ();
+//Close claw
+motorSet(3, 127);
+delay(500);
+//Keep constant grip
+motorSet(3, 1);
+//turn the robot around
+turnright();
+//drive backward
+displacement(dfromboxestobaskets*-1);
+//flip claw
+motorSet(4, 127);
+motorSet(5, -127);
+delay(1000);
+//Open claw
+motorSet(3, -127);
+delay(500);
+//flip claw
+motorSet(4, -127);
+motorSet(5, 127);
+delay(1000);
+	//drive forward
+displacement (dfromboxestobasket);
+turnleft();
+changeinheight(heightofsecondbox);
+
+
+//Close claw
+motorSet(3, 127);
+delay(500);
+//Keep constant grip
+motorSet(3, 1);
+	//be backward
+turnright();
+//drive backward
+displacement(dfromboxestobasket*-1);
+//flip claw
+motorSet(4, 127);
+motorSet(5, -127);
+delay(1000);
+//Open claw
+motorSet(3, -127);
+delay(500);
+//flip claw
+	motorSet(4, -127);
+motorSet(5, 127);
+delay(1000);
+//drive forward
+displacement (dfromboxestobasket);
+turnleft();
+changeinheight(heightofball);
+
+
+//Close claw
+motorSet(3, 127);
+delay(500);
+//Keep constant grip
+motorSet(3, 1);
+
+
+turnright();
+displacement(dfromboxestobaskets*-1);
+
+
+//flip claw
+motorSet(4, 127);
+motorSet(5, -127);
+delay(1000);
+//Open claw
+motorSet(3, -127);
+delay(500);
+}
+
+
+void displacement (int distance)
+{
+int counter = 0;
+if (distance > 0){
+  while (counter < (mspr*(distance/circumference))/20)
+  {
+    motorSet(2, 127);
+    motorSet(1, 127);
+    delay(20);
+    motorSet(2, 0);
+    motorSet(1, 0);
+    //line correction
+    //while(linesensordetectsablackline)
+  }
+
+delay(mspr*(distance/circumference)
+}else{
+}
+}
+
+
+void turnleft();
+{
+motorSet(2, 127);
+motorSet(1, -127);
+delay(mspr*((.25*dbetweenwheels*3.14)/circumference);
+motorSet(2, 0);
+motorSet(1, 0);
+}
+
+
+void turnright();
+{
+motorSet(2, -127);
+motorSet(1, 127);
+delay(mspr*((.25*dbetweenwheels*3.14)/circumference);
+motorSet(2, 0);
+motorSet(1, 0);
+}
+
+
+void changeinheight(int height);
+{
+if (height > 0)
+{
+motorSet(4, 127);
+motorSet(5, -127);
+delay(mspr*(asine(height/dfromaxiltoendofclaw)/360));
+motorSet(4, 0);
+motorSet(5, 0);
+}else{
+motorSet(4, -127);
+motorSet(5, 127);
+delay(mspr*(asine((-1*height)/dfromaxiltoendofclaw)/360));
+motorSet(4, 0);
+motorSet(5, 0);
+}
+}
+/hhhhhhhhhhasdadsf;alskdjf;askdjf;asdfjald;ksjfjaslkdfjasjfdlkdsa;lkfjal;skfjdldsa;jflkajdsfkas;dflasdfdsalfkja;slkdfja;sldfjlasdflaj;lkdsf
